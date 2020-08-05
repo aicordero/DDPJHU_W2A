@@ -9,7 +9,33 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+## Instructions
 
-## Including Plots
+Create a web page using R Markdown that features a map created with Leaflet.
+
+Host your webpage on either GitHub Pages, RPubs, or NeoCities.
+
+Your webpage must contain the date that you created the document, and it must contain a map created with Leaflet. We would love to see you show off your creativity!
+
+## Created Map Using Leaflet
+
+```{r map1, echo = TRUE}
+library(leaflet)
+
+df <-  data.frame(lat = runif(10, 55.755, 55.757), lng = runif(10, 37.6171, 37.6175))
+
+theMap <- data %>%
+          leaflet() %>%
+          addTiles()
+
+theMap <- theMap %>% 
+          addMarkers(lat=55.7558, lng= 37.6173, popup="Once in a while we drink vodka!", 
+                     icon = list( iconUrl = "https://icons.iconarchive.com/icons/cedarseed/cocktails/72/Vodka-Martini-icon.png")
+          ) %>% 
+          addMarkers(lat=55.75582, lng= 37.61736, popup="The Capital") 
+
+
+theMap %>% addMarkers(data=df, clusterOptions = markerClusterOptions())
+
+```
 
